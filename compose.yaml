@@ -1,7 +1,6 @@
 services:
   soldiers:
-    build: .
-    image: soldiers:8.0
+    image: mysql:8.0
     container_name: soldiers-mysql
     ports:
       - "2003:3306"
