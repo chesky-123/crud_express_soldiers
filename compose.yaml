@@ -1,0 +1,12 @@
+services:
+  soldiers:
+    build: .
+    image: soldiers:8.0
+    container_name: soldiers-mysql
+    ports:
+      - "2003:3306"
+    environment:
+      MYSQL_DATABASE: "my_db_soldiers"
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    
