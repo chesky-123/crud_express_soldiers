@@ -43,6 +43,7 @@ export async function createSoldier(req, res) {
         `, [body.name, body.role, body.rank_soldier, body.unit, body.age, body.service_status]);
         return res.status(201).json({message:"soldier created successful"})
     }catch (e) {
+        console.log(e);
         return res.status(400).json({error:"somthing wrong"})
      };
 };
