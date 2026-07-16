@@ -34,17 +34,19 @@ export const pool = mysql2.createPool({
 export async function createSoldier(req, res) {
     try {
         const body = req.body;
-        const create = await pool.execute(`
+        const [result] = await pool.execute(`
         INSERT into soldiers(
         name,role,rank_soldier,unit,age,service_status
         ) VALUES(
          ?,?,?,?,?,?
         )
         `, [body.name, body.role, body.rank_soldier, body.unit, body.age, body.service_status]);
-        return res.status(201).json({message:"soldier created successful"})
+    const newId = result.insertId
+    const [soldier] = await pool.execute(`select * from soldiers where id = ?`,[newId])
+        return res.status(201).json(soldier[0])
     }catch (e) {
         console.log(e);
-        return res.status(400).json({error:"somthing wrong"})
+        return res.status(500).json({error:"somthing wrong"})
      };
 };
 

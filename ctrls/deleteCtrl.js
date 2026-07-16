@@ -7,7 +7,7 @@ export async function deleteSoldier(req, res) {
         return res.status(200).json({message:"soldier deleted successfuli"})
     }catch (e){
         console.log(e);
-        return res.status(400).json({error:"somthing wrong"})
+        return res.status(500).json({error:"somthing wrong"})
     }
     
 }
