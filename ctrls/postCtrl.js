@@ -2,7 +2,7 @@ import mysql2 from "mysql2/promise";
 
 
 
-const pool = mysql2.createPool({
+export const pool = mysql2.createPool({
     host: "localhost",
     port: 2003,
     user: "root",
@@ -10,26 +10,26 @@ const pool = mysql2.createPool({
     connectionLimit: 10
 });
 
-export async function createTable(req, res) {
-    try {
-        const create = await pool.execute(`
-        CREATE TABLE if not exists soldiers(  
-        id                          int PRIMARY KEY AUTO_INCREMENT ,
-        name                        VARCHAR(20) NOT NULL ,
-        role                        VARCHAR(20) ,
-        rank_soldier                VARCHAR(20) ,
-        unit                        VARCHAR(20) ,
-        age                         INT,
-        service_status              BOOLEAN DEFAULT 1,
-        creation_data               TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-        `);
-        return res.end("table create successful")
-    } catch (e) {
-        console.log(EERROORR);
-        return e
-    };
-};
+// export async function createTable(req, res) {
+//     try {
+//         const create = await pool.execute(`
+//         CREATE TABLE if not exists soldiers(  
+//         id                          int PRIMARY KEY AUTO_INCREMENT ,
+//         name                        VARCHAR(20) NOT NULL ,
+//         role                        VARCHAR(20) ,
+//         rank_soldier                VARCHAR(20) ,
+//         unit                        VARCHAR(20) ,
+//         age                         INT,
+//         service_status              BOOLEAN DEFAULT 1,
+//         creation_data               TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//     );
+//         `);
+//         return res.end("table create successful")
+//     } catch (e) {
+//         console.log(EERROORR);
+//         return e
+//     };
+// };
 
 export async function createSoldier(req, res) {
     try {
