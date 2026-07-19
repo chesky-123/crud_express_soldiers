@@ -7,7 +7,10 @@ export async function isProperBody(req, res, next) {
     const bodyKeys = Object.keys(body);
 
     const isAllKeysInBody = bodyKeys.every(k => BODY.includes(k))
-    if (!isAllKeysInBody) return res.status(400).json({ error: "Invalid fields provided" })
-    return next()
-
+    if (!isAllKeysInBody) {
+        const err = new Error("Invalid fields provided");
+        err.status = 400;
+        return next(err);
+    };
+    return next();
 };

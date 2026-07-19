@@ -1,3 +1,4 @@
+import { errorHandler } from "./middelweres/errorHandler.js";
 import { router } from "./routes/soldiersRouter.js";
 import express from "express";
 
@@ -10,9 +11,10 @@ app.use(express.json());
 app.use("/soldiers",router);
 
 
+app.use(errorHandler)
+
 app.listen(PORT,(e)=>{
     if (e) return console.log(e);
-    
     console.log("server running in port",PORT,"...");
     
 })
